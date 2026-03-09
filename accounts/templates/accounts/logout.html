@@ -1,0 +1,42 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+
+        <div class="card shadow-lg border-0 text-center">
+
+            <!-- Header -->
+            <div class="card-header text-white" style="background:#0d6efd;">
+                <h4 class="mb-0">Logged Out</h4>
+            </div>
+
+            <!-- Body -->
+            <div class="card-body p-4">
+
+                <h5 class="mb-3 text-success">
+                    You have successfully logged out
+                </h5>
+
+                <!-- Buttons -->
+                <div class="mt-4">
+
+                    <a href="{% url 'login' %}" class="btn btn-primary mr-2">
+                        Login Again
+                    </a>
+
+                    <a href="{% url 'core:dashboard' %}" class="btn btn-outline-secondary">
+                        Go to Home
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

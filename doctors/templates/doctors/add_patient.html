@@ -1,0 +1,54 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <!-- Header -->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">Add Patient</h2>
+        <p class="text-muted">Enter patient basic details</p>
+    </div>
+
+    <!-- Card -->
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-4">
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="row">
+
+                    {% for field in form %}
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-semibold">
+                                {{ field.label }}
+                            </label>
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+                <!-- Buttons -->
+                <div class="text-center mt-4">
+
+                    <button type="submit" class="btn btn-primary px-4">
+                        Save Patient
+                    </button>
+
+                    <a href="{% url 'doctors:doctor-dashboard' %}" 
+                       class="btn btn-outline-secondary ms-2">
+                        Cancel
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

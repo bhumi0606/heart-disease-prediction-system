@@ -1,0 +1,60 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <!-- Header -->
+    <div class="mb-4 text-center">
+        <h2 class="fw-bold">User Dashboard</h2>
+        <p class="text-muted">Manage your reports and health analysis</p>
+    </div>
+
+    <!-- ACTION CARDS -->
+    <div class="row text-center">
+
+        <!-- Upload Report -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow border-0 rounded-4 p-4 h-100">
+                <h4>Upload Report</h4>
+                <p class="text-muted">
+                    Upload your medical report and get AI analysis instantly.
+                </p>
+                <a href="{% url 'ai_reports:upload_report' %}" class="btn btn-primary mt-3">
+                    Upload Now
+                </a>
+            </div>
+        </div>
+
+        <!-- My Reports -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow border-0 rounded-4 p-4 h-100">
+                <h4>My Reports</h4>
+                <p class="text-muted">
+                    View all your uploaded reports and AI results.
+                </p>
+                <a href="{% url 'ai_reports:my_reports' %}" class="btn btn-success mt-3">
+                    View Reports
+                </a>
+            </div>
+        </div>
+
+        <!-- Apply Doctor -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow border-0 rounded-4 p-4 h-100">
+                <h4>Apply for Doctor</h4>
+                <p class="text-muted">
+                    Apply for doctor access and manage patients.
+                </p>
+                <a href="{% url 'doctors:apply_doctor' %}" class="btn btn-warning mt-3">
+                    Apply Now
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+services:
+
+  db:
+    image: mysql:8.0
+    container_name: hdpm_mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: hdpm
+      MYSQL_USER: hdpmuser
+      MYSQL_PASSWORD: hdpm123
+      MYSQL_ROOT_PASSWORD: bhumi007
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  web:
+    build: .
+    container_name: hdpm
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+volumes:
+  mysql_data:

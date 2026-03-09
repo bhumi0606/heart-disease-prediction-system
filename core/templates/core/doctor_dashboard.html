@@ -1,0 +1,74 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold">Doctor Dashboard</h2>
+            <p class="text-muted mb-0">Manage patients and heart reports</p>
+        </div>
+
+        <a href="{% url 'doctors:add-patient' %}" class="btn btn-primary shadow-sm">
+            + Add Patient
+        </a>
+    </div>
+
+    <!-- Patients List -->
+    <div class="row">
+
+        {% for item in data %}
+        <div class="col-md-6 mb-4">
+            <div class="card shadow border-0 rounded-4 h-100">
+
+                <div class="card-body">
+
+                    <!-- Patient Info -->
+                    <h5 class="fw-semibold mb-2">
+                        {{ item.patient.patient_name }}
+                    </h5>
+
+                    <p class="text-muted mb-3">
+                        {{ item.patient.patient_email }}
+                    </p>
+
+                    <!-- Buttons -->
+                    <div class="d-flex justify-content-between">
+
+                        <a href="{% url 'doctors:add-heart' item.patient.id %}"
+                           class="btn btn-success btn-sm">
+                            Add Heart Data
+                        </a>
+
+                        <a href="{% url 'doctors:patient-detail' item.patient.id %}"
+                           class="btn btn-outline-primary btn-sm">
+                            View Details
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        {% empty %}
+
+        <!-- Empty State -->
+        <div class="text-center mt-5">
+            <h5 class="text-muted">No patients added yet</h5>
+            <p>Add your first patient to get started</p>
+
+            <a href="{% url 'doctors:add-patient' %}" class="btn btn-primary">
+                Add Patient
+            </a>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

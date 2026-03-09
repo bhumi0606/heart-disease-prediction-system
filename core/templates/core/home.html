@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<div class="container mt-5 text-center">
+
+    <h2>Welcome {{ user.username }}</h2>
+    <p class="text-muted">Heart Disease Prediction System</p>
+
+    <hr>
+
+    {% if user.profile.role == 'user' %}
+
+        <h4>User Panel</h4>
+
+        <a href="{% url 'ai_reports:upload_report' %}" class="btn btn-primary m-2">
+            Upload Report
+        </a>
+
+        <a href="{% url 'ai_reports:my_reports' %}" class="btn btn-info m-2">
+            My Reports
+        </a>
+
+        <a href="{% url 'doctors:apply_doctor' %}" class="btn btn-warning m-2">
+            Apply Doctor
+        </a>
+
+    {% elif user.profile.role == 'doctor' %}
+
+        <h4>Doctor Panel</h4>
+
+        <a href="{% url 'doctors:doctor-dashboard' %}" class="btn btn-success m-2">
+            Doctor Dashboard
+        </a>
+
+        <a href="{% url 'doctors:add-patient' %}" class="btn btn-primary m-2">
+            Add Patient
+        </a>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <!-- Page Header -->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">Upload Medical Report</h2>
+        <p class="text-muted">Upload your report and get instant AI analysis</p>
+    </div>
+
+    <!-- Upload Card -->
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-4">
+
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Select Report File</label>
+                    <input type="file" name="file" multiple class="form-control">
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary px-4">
+                        Upload & Analyze
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Back Button -->
+    <div class="text-center mt-4">
+        <a href="{% url 'ai_reports:my_reports' %}" class="btn btn-outline-secondary">
+            Back to My Reports
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

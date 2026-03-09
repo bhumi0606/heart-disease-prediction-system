@@ -1,0 +1,61 @@
+{% extends 'core/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow-lg border-0">
+
+                <!-- Header -->
+                <div class="card-header text-white text-center" style="background:#0d6efd;">
+                    <h4 class="mb-0">User Login</h4>
+                </div>
+
+                <!-- Body -->
+                <div class="card-body p-4">
+
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <fieldset class="form-group">
+                            {{ form|crispy }}
+                        </fieldset>
+
+                        <!-- Login Button -->
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-primary w-100">
+                                Login
+                            </button>
+                        </div>
+
+                        <!-- Forgot Password -->
+                        <div class="text-center mt-3">
+                            <a href="{% url 'password_reset' %}">
+                                Forgot Password?
+                            </a>
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <!-- Footer -->
+                <div class="card-footer text-center bg-light">
+                    <small class="text-muted">
+                        Don’t have an account?
+                        <a href="{% url 'register' %}" class="font-weight-bold">
+                            Register Now
+                        </a>
+                    </small>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
