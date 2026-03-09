@@ -1,61 +1,53 @@
-{% extends 'core/base.html' %}
+{% extends "core/base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
+<div class="bg-light min-vh-100 py-5">
+    <div class="container">
 
-<div class="container py-4">
+        <!-- Form Card -->
+        <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
 
-    <!-- Header -->
-    <div class="text-center mb-4">
-        <h2 class="fw-bold">Add Heart Data</h2>
-        <p class="text-muted">Enter patient details for heart disease prediction</p>
-    </div>
-
-    <!-- Card -->
-    <div class="card shadow-lg border-0 rounded-4">
-        <div class="card-body p-4">
-
-            <!-- Patient Info -->
-            <div class="mb-4 text-center">
-                <h5 class="fw-semibold">{{ patient.patient_name }}</h5>
-                <p class="text-muted mb-0">Patient Record</p>
+            <!-- Header -->
+            <div class="text-center p-4">
+                <h2 class="fw-bold mb-1">Add Heart Data</h2>
+                <p class="mb-0">Enter patient details for heart disease prediction</p>
             </div>
 
-            <!-- Form -->
-            <form method="POST">
-                {% csrf_token %}
+            <!-- Card Body -->
+            <div class="card-body p-5">
 
-                <div class="row">
-
-                    {% for field in form %}
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label fw-semibold">
-                                {{ field.label }}
-                            </label>
-                            {{ field }}
-                        </div>
-                    {% endfor %}
-
+                <!-- Patient Info -->
+                <div class="mb-4 text-center">
+                    <h5 class="fw-semibold">{{ patient.patient_name }}</h5>
+                    <p class="text-muted mb-0">Patient Record</p>
                 </div>
 
-                <!-- Buttons -->
-                <div class="text-center mt-4">
+                <!-- Form -->
+                <form method="POST">
+                    {% csrf_token %}
 
-                    <button type="submit" class="btn btn-success px-4">
-                        Predict Result
-                    </button>
+                    <!-- Display form -->
+                    <fieldset class="form-group mb-4">
+                        {{ form|crispy }}
+                    </fieldset>
 
-                    <a href="{% url 'doctors:doctor-dashboard' %}" 
-                       class="btn btn-outline-secondary ms-2">
-                        Cancel
-                    </a>
+                    <!-- Buttons -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg px-5 me-2">
+                            Save Details
+                        </button>
+                        <a href="{% url 'doctors:doctor-dashboard' %}" 
+                           class="btn btn-outline-secondary btn-lg px-4">
+                            Cancel
+                        </a>
+                    </div>
 
-                </div>
+                </form>
 
-            </form>
-
+            </div>
         </div>
+
     </div>
-
 </div>
-
-{% endblock %}
+{% endblock content %}

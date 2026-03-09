@@ -1,4 +1,3 @@
-# heart_ai.py
 import os
 import re
 from ai_reports.models import Report, WorkoutDietPlanUser
@@ -8,14 +7,9 @@ from PIL import Image, ImageFilter
 import pytesseract
 from google import genai
 from doctors.utils import diet_plan, workOutPlanPrompt
-from dotenv import load_dotenv
 
-load_dotenv()
 #gemini api call
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
-# client = genai.Client(api_key='AIzaSyCRbaCQKSVnOuzswZJZo7ZW5EiztlOPE3Q')
-# client = genai.Client()
-
 
 # Tesseract configuration
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"

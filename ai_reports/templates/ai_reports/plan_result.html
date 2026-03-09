@@ -29,7 +29,11 @@
 
         <hr>
             <div class="text-center mt-4">
-                <a href="{% url 'ai_reports:download-plan' plan.id %}">Download</a>
+                {% if plan and plan.id %}
+                    <a href="{% url 'ai_reports:download-plan' plan.id %}">Download</a>
+                {% else %}
+                    <span>No plan available</span>
+                {% endif %}
             </div>
 
         

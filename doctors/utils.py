@@ -3,14 +3,10 @@ from doctors.models import PredictionData, WorkoutDietPlan
 import joblib
 from django.conf import settings
 from google import genai
-from dotenv import load_dotenv
 from django.core.mail import send_mail
 
-load_dotenv()
 #gemini api call
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
-# client = genai.Client(api_key='AIzaSyCRbaCQKSVnOuzswZJZo7ZW5EiztlOPE3Q')
-# client = genai.Client()
 
 
 

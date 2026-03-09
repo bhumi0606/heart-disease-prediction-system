@@ -1,16 +1,15 @@
 {% extends 'core/base.html' %}
 
 {% block content %}
-
-<div class="container py-4">
+<div class="container py-5">
 
     <!-- Header -->
-    <div class="text-center mb-4">
+    <div class="text-center mb-5">
         <h2 class="fw-bold">Patient Details</h2>
         <p class="text-muted">Complete medical and prediction history</p>
     </div>
 
-    <!-- Patient Info -->
+    <!-- Patient Info Card -->
     <div class="card shadow border-0 rounded-4 mb-4">
         <div class="card-body text-center">
             <h4 class="fw-semibold">{{ patient.patient_name }}</h4>
@@ -27,38 +26,31 @@
                 {% for h in heart_records %}
                     <div class="col-md-6 mb-3">
                         <div class="card border-0 shadow-sm p-3 h-100">
-
                             <p><strong>Age:</strong> {{ h.age }}</p>
                             <p><strong>Blood Pressure:</strong> {{ h.trestbps }}</p>
                             <p><strong>Cholesterol:</strong> {{ h.chol }}</p>
-
-                            <p class="text-muted mb-0">
-                                {{ h.created_at }}
-                            </p>
-
+                            <p class="text-muted mb-0">{{ h.created_at }}</p>
                         </div>
                     </div>
                 {% empty %}
                     <p class="text-muted">No heart records found.</p>
                 {% endfor %}
             </div>
-
         </div>
     </div>
 
     <!-- Prediction History -->
-    <div class="card shadow border-0 rounded-4">
+    <div class="card shadow border-0 rounded-4 mb-4">
         <div class="card-body">
             <h5 class="fw-bold mb-3">Prediction History</h5>
 
             <div class="row">
                 {% for p in predictions %}
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-6 mb-4">
                         <div class="card border-0 shadow-sm p-3 h-100 text-center">
 
-                            <h4 class="fw-bold">
-                                {{ p.heart_disease }}%
-                            </h4>
+                            <!-- Prediction Percentage -->
+                            <h4 class="fw-bold mb-2">{{ p.heart_disease }}%</h4>
 
                             <!-- Risk Badge -->
                             {% if p.risk == "Low Risk" %}
@@ -69,36 +61,36 @@
                                 <span class="badge bg-danger">High Risk</span>
                             {% endif %}
 
-                            <p class="text-muted mt-2 mb-0">
-                                {{ p.created_at }}
-                            </p>
+                            <!-- Date -->
+                            <p class="text-muted mt-2 mb-3">{{ p.created_at }}</p>
+
+                            <!-- Buttons -->
+                            <div class="d-flex justify-content-center gap-2">
+                                <a href="{% url 'doctors:generate_plan' p.id %}" 
+                                    >
+                                   Generate Diet Plan
+                                </a><hr>
+                                <a href="{% url 'doctors:check-plan' %}" 
+                                   >
+                                   Check Current Diet Plan
+                                </a>
+                            </div>
 
                         </div>
-                    </div> 
-                    <div>
-                    <a href="{% url 'doctors:generate_plan' p.id %}" class="btn btn-success">
-                    Generate Diet Plan
-                    </a>
-                    </div>
-                    <div>
-                    <a href="{% url 'doctors:check-plan' %}">Check Current Diet Plan</a>
                     </div>
                 {% empty %}
                     <p class="text-muted">No predictions available.</p>
                 {% endfor %}
             </div>
-
         </div>
     </div>
 
     <!-- Back Button -->
     <div class="text-center mt-4">
-        <a href="{% url 'doctors:doctor-dashboard' %}" 
-           class="btn btn-outline-secondary">
+        <a href="{% url 'doctors:doctor-dashboard' %}" class="btn btn-outline-secondary">
             Back to Dashboard
         </a>
     </div>
 
 </div>
-
 {% endblock %}

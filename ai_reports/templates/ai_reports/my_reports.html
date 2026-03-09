@@ -42,12 +42,12 @@
 {{ report.result }}
                                 </pre>
                                 <div>
-                                <a href="{% url 'ai_reports:generate_plan' report.id %}" class="btn btn-success">
+                                <a href="{% url 'ai_reports:generate_plan' report.id %}" >
                                 Generate Diet Plan
                                 </a>
                                 <!-- Buttons -->
                                 <div>
-                                <a href="{% url 'ai_reports:check-plan' %}">Check Current Diet Plan</a>
+                                <a href="{% url 'ai_reports:check-plan' %}" >Check Current Diet Plan</a>
                                 </div>
                                 </div>
                             {% else %}
